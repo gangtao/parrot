@@ -1,8 +1,5 @@
 import unittest
-
 import sys
-import json
-import time
 
 sys.path.append('../../src')
 
@@ -24,9 +21,17 @@ class TestModel(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_mode_conversion(self):
+    def test_mode_conversion1(self):
         converter = ModelConverter()
         print(converter.convert("Splunk_TA_cisco-asa"))
+
+    def test_mode_conversion2(self):
+        converter = ModelConverter()
+        print(converter.convert("Splunk_TA_web"))
+
+    def test_mode_conversion3(self):
+        converter = ModelConverter()
+        print(converter.convert("Splunk_TA_windows"))
 
 
 if __name__ == '__main__':
