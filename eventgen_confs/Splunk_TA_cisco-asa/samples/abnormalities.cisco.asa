@@ -1,0 +1,2 @@
+@@time@@ %PIX|ASA-6-109025: Authorization denied (acl=acmetechinbound) for user @@user@@ from @@user_ip@@/137 to @@host_ip@@/137 on interface Outside using UDP
+@@time@@ %PIX|ASA-4-400032: IPS:4051 UDP Snork attack from @@user_ip@@ to @@host_ip@@ on interface outside
