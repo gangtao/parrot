@@ -29,7 +29,7 @@ the `token` scheme contains
 - value
 
 a sample token with a random replacement value:
-`
+```javascript
 {
 	'start': 113,
 	'token': {
@@ -42,12 +42,15 @@ a sample token with a random replacement value:
 	'end': 124,
 	'value': '@@host_ip@@'
 }
-`
+
+```
+
 a sample token with fixed value there is no need to replace
-`
+```javascript
 {
 	'start': 105,
 	'end': 113,
 	'value': '/137 to '
 }
-`
+
+```
