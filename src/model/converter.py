@@ -18,9 +18,11 @@ class ModelConverter(object):
             self._home = os.path.abspath(os.path.join(os.path.dirname(
                 os.path.realpath(__file__)), os.pardir, os.pardir))
 
-        self._eventgen_samples_path = os.path.join(self._home, EVENTGEN_SAMPLES_PATH);
+        self._eventgen_samples_path = os.path.join(self._home, EVENTGEN_SAMPLES_PATH)
 
-    def _get_samples(self, name ):
+        self._replacement_cache = dict()
+
+    def _get_samples(self, name):
         sample_path = os.path.join(self._home, EVENTGEN_CONF_BASE, name, EVENTGEN_CONF_SAMPLE_PATH)
         sample_files = [name for name in os.listdir(sample_path)
                         if not os.path.isdir(os.path.join(sample_path, name))]
@@ -38,10 +40,15 @@ class ModelConverter(object):
     def _get_replacement_values(self, type, replacement):
         result = list()
         if type == "file" or type == "mvfile":
+            key = type+":"+replacement
+            if key in self._replacement_cache:
+                return key
             with open(replacement.replace("/opt/splunk/etc/apps/SA-Eventgen", self._eventgen_samples_path), "r") as f:
                 content = f.read()
                 for line in content.split("\n"):
                     result.append(line)
+            self._replacement_cache[key] = result
+            return key
         return result
 
     def _get_all_tokens(self, section, config):
@@ -134,6 +141,7 @@ class ModelConverter(object):
         result = dict()
         result["name"] = name
         result["patterns"] = list()
+        result["replacement"] = self._replacement_cache
         # contain all the samples from eventgen samples
         samples = self._get_samples(name)
         config = self._get_conf(name)
