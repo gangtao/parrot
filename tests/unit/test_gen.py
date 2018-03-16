@@ -5,7 +5,7 @@ import os
 sys.path.append('../../src')
 
 from model.converter import ModelConverter
-from model.gen import BatchFileGenerator
+from model.gen import BatchFileGenerator,CSVFileGenerator,JSONFileGenerator
 
 class TestGen(unittest.TestCase):
 
@@ -39,25 +39,25 @@ class TestGen(unittest.TestCase):
     def test_batchfilegen1(self):
         converter = ModelConverter()
         model = converter.convert("Splunk_TA_cisco-asa")
-        generator = BatchFileGenerator(model, self.file1)
+        generator = CSVFileGenerator(model, self.file1)
         generator.generate(["samplelog_vpn.cisco.asa"], 10)
 
     def test_batchfilegen2(self):
         converter = ModelConverter()
         model = converter.convert("Splunk_TA_cisco-asa")
-        generator = BatchFileGenerator(model,self.file2)
+        generator = CSVFileGenerator(model,self.file2)
         generator.generate(["samplelog_vpn.cisco.asa","abnormalities.cisco.asa","samplelog_tcp_connection.cisco.asa","samplelog_access.cisco.asa"], 30)
 
     def test_batchfilegen3(self):
         converter = ModelConverter()
         model = converter.convert("Splunk_TA_web")
-        generator = BatchFileGenerator(model,self.file3)
+        generator = CSVFileGenerator(model,self.file3)
         generator.generate(["sample.websense"], 30)
 
     def test_batchfilegen4(self):
         converter = ModelConverter()
         model = converter.convert("Splunk_TA_windows")
-        generator = BatchFileGenerator(model,self.file4)
+        generator = CSVFileGenerator(model,self.file4)
         generator.generate(["Security.4624.windows","Security.4634.windows","Security.528.windows"], 30)
 
 
