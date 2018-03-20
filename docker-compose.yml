@@ -1,0 +1,13 @@
+version: '3.2'
+services:
+  tensorflow:
+    image: tensorflow/tensorflow
+    ports:
+    - "8888:8888"
+    volumes:
+      - type: bind
+        source: ./data
+        target: /notebooks/data
+      - type: bind
+        source: ./notebooks
+        target: /notebooks/mynotebooks

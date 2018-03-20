@@ -22,6 +22,8 @@ class Generator(object):
                     event["name"] = self._model["name"]
                     event["type"] = p["sourcetype"]
                     event["file"] = p["name"]
+                    if "breaker" in p:
+                        event["breaker"] = p["breaker"]
                     events.append(event)
         return events
 
